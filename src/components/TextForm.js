@@ -47,7 +47,7 @@ export default function TextForm(props) {
     <div className="container" style={{
       color:props.mode==='light'?'black':'white'
     }}>
-        <h1>{props.heading}</h1>
+        <h1 className='mb-3'>{props.heading}</h1>
         <div className="mb-3">
         <textarea className="form-control" id="myBox" value={text} ref={textAreaRef} onChange={handleOnChange} rows="7"
         style={{ fontWeight: isBold ? "bold" : "normal",
@@ -58,11 +58,11 @@ export default function TextForm(props) {
 
         <button className="btn-primary" onClick={handleUpChange}>Convert to UpperCase</button>
 
-        <button className="btn-primary mx-2" onClick={handleDownChange}>Convert to LowerCase</button>
+        <button className="btn-primary mx-2 my-2" onClick={handleDownChange}>Convert to LowerCase</button>
 
-        <button className="btn-primary mx-2" onClick={handleClearChange}>Clear Text</button>
+        <button className="btn-primary mx-2 my-2" onClick={handleClearChange}>Clear Text</button>
 
-        <button className="btn-primary mx-2" onClick={handleBoldChange}>Bold</button>
+        <button className="btn-primary mx-2 my-2" onClick={handleBoldChange}>Bold</button>
 
         <button className="btn-primary" onClick={handleCopyChange}>Copy</button>
     </div>
@@ -70,8 +70,8 @@ export default function TextForm(props) {
       color:props.mode==='light'?'black':'white'
     }}>
         <h1>Your text summary</h1>
-        <p>{text.length===0?0:text.split(" ").length} words and {text.length} characters</p>
-        <p>{0.008 * (text.length===0?0:text.split(" ").length)} Minutes read</p>
+        <p>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
+        <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes read</p>
         <h2>Preview</h2>
         <p>{text}</p>
     </div>
